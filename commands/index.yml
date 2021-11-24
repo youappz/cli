@@ -1,0 +1,129 @@
+account:
+  summary: Display a summary of the current YouAppz account.
+
+apikey:
+  summary: Get the api key for the current YouAppz account.
+  options:
+    - name: reset
+      short: R
+      summary: Reset the api key to a new value.
+
+  details: The api-key is typically configured as an enviroment variable named YOUAPPZ_API_KEY on a CI server where there isn't an interactive logged in user. If you need to reset the key, run the command with the --reset option. This will of course require any YOUAPPZ_API_KEY environment variables be updated.
+
+create:
+  summary: Create a new YouAppz website in the current directory
+  details: If no youappz.yml file exists in the current directory, a new one will created. If there is already an youappz.yml file, then the "id" property will overriden with the new website's id. You can optionally specify a --name option. If no name is provided then a random name will be generated for you.
+  options:
+    - name: name
+      short: n
+      summary: Specify the unique name for the website. The name must be URL friendly consiting of lowercase letters, numbers, and dashes.
+    - name: quick-start
+      short: q
+      summary: Specify a quikc start from the YouAppz gallery to use to kickstart the website.
+    - name: source
+      short: S
+      summary: Specify a URL to a .zip or .tar.gz archive to create the new website from.
+  examples:
+    - appz create
+    - appz create --name my-new-site
+    - appz create -n my-new-site
+    - appz create --quick-start hugo/agency
+    - appz create --source https://html5up.net/editorial/download
+    - appz create -S https://html5up.net/editorial/download -n my-new-site
+
+deploy:
+  summary: Deploy the website in the current directory.
+  options:
+    - name: deploy-dir
+      short: d
+      summary: The sub-directory containing the assets to deploy. Defaults to the current directory.
+    - name: stage
+      short: s
+      summary: The deploy stage this deployment should target.
+    - name: message
+      short: m
+      summary: Message for the deployment
+    - name: commit-url
+      short: c
+      summary: The URL to the commit that triggered this deployment.
+
+  details: |
+    The dir option overrides any value specified in the deploy section of the youappz.yml manifest. If no value is specified in either location the current directory is deployed.
+
+    The --stage argument impacts the URL of the deployed version. For example passing "--stage test" will make the new version available at https://www--test.customdomain.com or https://SITENAME--test.youappzapp.com. If no value is provided then the deployment will target the production URL.
+
+    If being invoked from a CI server, it may be useful to pass the git commit message and the URL to the commit details that triggered the build. This information will be displayed in the YouAppz control panel as part of the deployment history.
+
+  examples:
+    - appz deploy
+    - appz deploy --directory _site
+    - appz deploy --stage test
+    - appz deploy --message "Commit message" --commit https://github.com/owner/repo/commit/2495349f
+
+delete:
+  summary: Delete the current website
+  details: If subscribed to the Pro plan, recurring payments will be cancelled.
+
+# domain command
+domain:
+  summary: Register a custom domain for the current website
+  details: |
+    This command requires that your website has already been upgraded to the Pro plan. If you want to run your website at the apex domain, i.e. https://mydomain.com, your DNS provider needs to support ANAME or ALIAS records. For details see:
+    https://www.youappz.com/docs/custom-domains-ssl#apex-domain
+
+    You can also run the command without any arguments to get status information on the domain.
+  options:
+    - name: name
+      short: n
+      summary: The name of the domain (without any sub-domain, i.e. mydomain.com)
+    - name: subdomain
+      short: N
+      summary: The subdomain you want your website to be accessible at. For apex domain use the value '@'.
+
+  examples:
+    - 'appz domain --name mydomain.com --subdomain www   # Register domain for website with sub-domain'
+    - 'appz domain --name mydomain.com --subdomain @     # Register apex domain for website'
+    - 'appz domain                                       # Get information about the current domain'
+
+info:
+  summary: Display a summary of the current website
+
+login:
+  summary: Login to your YouAppz account
+  details: You'll be prompted to enter your email and password. If your credentials are correct, a file is written at ~/.appzrc.yml with an auth token that is passed in subsequent commands. The token is valid for 24 hours after which you'll be prompted to login again.
+
+rename:
+  summary: Rename the website
+  options:
+    - name: name
+      short: n
+      summary: The new name of the website
+  details: If on the free plan this changes the URL. I.e. https://SITENAME.youappzapp.com.
+  examples:
+    - appz rename -n "new-website-name"
+
+validate:
+  summary: Validate the youappz.yml file
+  details: |
+    Checks that there are no errors in the youappz.yml file that will prevent you from deploying.
+
+  examples:
+    - appz validate
+
+versions:
+  summary: Manage website versions
+  details: |
+    Run with no options to see a list of all website versions
+
+    To delete an existing version, pass the -D option. An error will be returned if attempting to delete the version deployed to production.
+
+    To push an existing version to a deploy stage, pass the --name and --stage options. If the stage already has an assigned version, it will be overwritten.
+
+    Finally to delete a deployment stage, pass the --stage and -D options. This will cause a 404 response for the stage URL. It is not possible to delete the production stage.
+
+  examples:
+    - 'appz versions                                 # Display a list of all versions'
+    - 'appz versions -D --name v21                   # Delete version v21'
+    - 'appz versions --name v2 --stage production    # Deploy version v2 to production stage'
+    - 'appz versions -n v3 -s test                   # Deploy version v3 to test stage'
+    - 'appz versions --delete --stage test           # Delete the test deploy stage'

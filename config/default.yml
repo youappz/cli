@@ -1,0 +1,8 @@
+pollVersionStatusInterval: 3000
+githubUrl: https://github.com/
+dashboardUrl: https://dashboard.youappz.com
+awsCertificatesEmail: no-reply@certificates.amazon.com
+userConfigFile: .appz.test.yml
+deployTimeoutSeconds: 360
+# The URL to the bucket where the YouAppz quick starts reside
+quickStartBaseUrl: https://youappz-themes.s3-accelerate.amazonaws.com/

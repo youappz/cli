@@ -1,0 +1,5 @@
+node_modules
+**/appz-deploy.tar.gz
+*.log
+coverage
+.vscode
