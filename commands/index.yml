@@ -30,6 +30,19 @@ create:
     - appz create --quick-start hugo/agency
     - appz create --source https://html5up.net/editorial/download
     - appz create -S https://html5up.net/editorial/download -n my-new-site
+list:
+  summary: list of all websites
+  examples:
+    - appz list
+download:
+  summary: Download Source files of a Website
+  options:
+    - name: name
+      short: n
+      summary: Specify the unique name for the website. you can fetch the unique name by running `appz list`.
+  examples:
+    - appz download --name my-site-id
+    - appz download -n my-site-id
 
 deploy:
   summary: Deploy the website in the current directory.

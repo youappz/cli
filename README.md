@@ -9,13 +9,13 @@ Command line interface for interacting with the [YouAppz](https://www.youappz.co
 ### Installation
 
 ```sh
-npm install youappz-cli -g
+npm install @youappz/cli -g
 ```
 
 This will make the `appz` command globally available. Run `appz help` for usage instructions:
 
 ```sh
-YouAppz - Professional static web publishing. (1.0.1)
+YouAppz - Professional static web publishing. (1.0.3)
 
 Usage:
     $ appz [command] [options]
@@ -26,13 +26,11 @@ Commands:
     create         Create a new YouAppz website in the current directory
     delete         Delete the current website
     deploy         Deploy the website in the current directory.
+    download       Download Source files of a Website
     domain         Register a custom domain for the current website
-    env            Set or retrieve environment variables
     info           Display a summary of the current website
     login          Login to your YouAppz account
-    logs           Tail the web logs for the current website
-    rename         Rename the website
-    switch         Switch to a different YouAppz account
+    list           list of all websites
     versions       Manage website versions
 
     Type appz help COMMAND for more details

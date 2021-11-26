@@ -1,6 +1,6 @@
 {
   "name": "@youappz/cli",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Command line interface for Youappz static hosting platform",
   "main": "bin/appz",
   "bin": {

@@ -88,6 +88,9 @@ program
 // Create new website
 program.command('create').action(commandAction(require('../commands/create')));
 
+// list all websites
+program.command('list').action(commandAction(require('../commands/list')));
+
 program.command('delete').action(
   commandAction(require('../commands/delete'), {
     loadWebsite: true
@@ -150,6 +153,12 @@ program.command('help').action(
 program.command('versions').action(
   commandAction(require('../commands/versions'), {
     loadWebsite: true
+  })
+);
+
+program.command('download').action(
+  commandAction(require('../commands/download'), {
+    loadWebsite: false
   })
 );
 
