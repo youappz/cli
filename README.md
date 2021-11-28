@@ -2,7 +2,7 @@
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build Status][travis-image]][travis-url]
 
-# youappz-cli
+# @youappz/cli
 
 Command line interface for interacting with the [YouAppz](https://www.youappz.com) static hosting platform.
 
@@ -20,9 +20,7 @@ YouAppz - Professional static web publishing. (1.0.3)
 Usage:
     $ appz [command] [options]
 
-Commands:
-    account        Display a summary of the current YouAppz account.
-    apikey         Get the api key for the current YouAppz account.
+Commands:    
     create         Create a new YouAppz website in the current directory
     delete         Delete the current website
     deploy         Deploy the website in the current directory.
