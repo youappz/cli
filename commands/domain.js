@@ -113,10 +113,13 @@ function domainStatus(program) {
       authToken: program.authToken
     })
     .then(domain => {
+      let sitezDomain = `${program.website.domain.subDomain}.${program.website.domain.name}`
+      sitezDomain = sitezDomain.replace('@.','')
       output(chalk.dim('Domain name:'));
-      output('    ' + chalk.bold(`${program.website.domain.subDomain}.${program.website.domain.name}`));
+      output('    ' + chalk.bold(sitezDomain));
       output.blankLine();
-    
+      
+      
       switch (domain.status.toUpperCase()) {
         case 'PENDING':
           output(chalk.dim('Domain status:'));
@@ -176,28 +179,29 @@ function domainStatus(program) {
           // output(chalk.dim('DNS Value:'));
           // output('    ' + domain.dnsValue);
           // output.blankLine();
-
+          
           output(chalk.dim('Domain status:'));
           output(
             wordwrap(4, 80)(
-              'Your SSL certificate and CDN distribution are fully provisioned. Here is the DNS value to ' +
-                'use for your CNAME or ANAME so that your website URL resolves to your Youappz CDN distribution:'
+              'Your SSL certificate and CDN distribution are fully provisioned.' +
+                'your website is now powered by Youappz Sitez:'
             )
           );
-
           output.blankLine();
-          output('    ' + chalk.bold(domain.dnsValue) + '.');
-          output.blankLine();
-
           output(
             wordwrap(4, 80)(
-              'Full details on configuring DNS available at ' +
-                chalk.yellow(DNS_SETUP_URL) +
-                '. Contact ' +
+              'Visit your website at ' +
+                chalk.yellow(`https://${sitezDomain}`))
+          );
+          output.blankLine();
+          output(
+            wordwrap(4, 80)(
+              'Contact ' +
                 chalk.underline(SUPPORT_EMAIL) +
                 ' if you need any assistance.'
             )
           );
+
           break;
         default:
           output('    Unknown domain status ' + domain.status);

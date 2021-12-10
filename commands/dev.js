@@ -320,7 +320,7 @@ function uploadTarballToS3(program, deployStage, tarballFile) {
                   // S3 metadata must be strings
                   fileCount: program.bundleFileCount.toString(),
                   tenantId: program.website.customerId,
-                  assetFingerPrinting: deployManifest.assetFingerPrinting ? deployManifest.assetFingerPrinting.toString() : 'true'
+                  assetFingerPrinting: deployManifest.assetFingerPrinting.toString()
                 }},
           authToken: program.authToken
         })

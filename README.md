@@ -1,6 +1,5 @@
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
-[![Build Status][travis-image]][travis-url]
 
 # @youappz/cli
 
@@ -15,7 +14,7 @@ npm install @youappz/cli -g
 This will make the `appz` command globally available. Run `appz help` for usage instructions:
 
 ```sh
-YouAppz - Professional static web publishing. (1.0.3)
+YouAppz - Professional static web publishing. (1.0.12)
 
 Usage:
     $ appz [command] [options]
@@ -34,11 +33,10 @@ Commands:
     Type appz help COMMAND for more details
 ```
 
-Complete docs available at: [https://www.youappz.com/docs/cli](https://www.youappz.com/docs/cli/)
+Complete docs available at: [https://www.youappz.com/docs/sitez/cli](https://www.youappz.com/docs/sitez/cli/)
 
-[npm-image]: https://img.shields.io/npm/v/youappz-cli.svg?style=flat
-[npm-url]: https://npmjs.org/package/youappz-cli
-[travis-image]: https://img.shields.io/travis/youappz/youappz-cli.svg?style=flat
-[travis-url]: https://travis-ci.org/youappz/youappz-cli
-[downloads-image]: https://img.shields.io/npm/dm/youappz-cli.svg?style=flat
-[downloads-url]: https://npmjs.org/package/youappz-cli
+[npm-image]: https://img.shields.io/npm/v/@youappz/cli.svg?style=flat
+[npm-url]: https://npmjs.org/package/@youappz/cli
+[travis-image]: https://img.shields.io/travis/youappz/@youappz/cli.svg?style=flat
+[downloads-image]: https://img.shields.io/npm/dm/@youappz/cli.svg?style=flat
+[downloads-url]: https://npmjs.org/package/@youappz/cli

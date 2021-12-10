@@ -128,7 +128,9 @@ function displayVersions(program) {
   return listVersions(program).then(versions => {
     
     const {deployedVersions} = program.website;
+    
     const deployedStages = Object.keys(deployedVersions);
+    
     if (Object.keys(versions).length === 0) {
       output('There are no versions right now.');
       output(
@@ -153,12 +155,12 @@ function displayVersions(program) {
           ' '
         )
       );
-      process.stdout.write(_.padEnd(version.created, 20, ' '));
+      process.stdout.write(_.padEnd(formatDate(version.created), 20, ' '));
 
       // Check if this version is deployed to any stages
       const stagesWhereVersionDeployed = [];
       deployedStages.forEach(stage => {
-        if (deployedVersions[stage] === version.versionId) {
+        if (deployedVersions[stage] === version.id) {
           stagesWhereVersionDeployed.push(stage);
         }
       });
@@ -173,4 +175,17 @@ function displayVersions(program) {
 
     output.blankLine();
   });
+}
+const formatDate = (dateString) => {
+  const options = {
+    year: 'numeric', month: 'numeric', day: 'numeric',
+    hour: 'numeric', minute: 'numeric', second: 'numeric',
+    hour12: false,
+  };
+  const date = new Date(dateString)
+  return new Intl.DateTimeFormat('en-US', options).format(date)
+  // return new Intl.DateTimeFormat('en-GB', { dateStyle: 'full', timeStyle: 'long' }).format(new Date(date));
+  return new Intl.DateTimeFormat('default', options).format(new Date(date))
+
+  // return new Date(dateString).toLocaleDateString(undefined, options)
 }

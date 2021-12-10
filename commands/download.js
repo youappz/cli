@@ -6,20 +6,20 @@ const output = require('../lib/output');
 const api = require('../lib/api');
 const download = require('../lib/download');
 const manifest = require('../lib/manifest');
+const ora = require('ora');
 
 // Command to download a website source files
 module.exports = program => {
-  output.blankLine();
-  output(
-    'Downloading YouAppz website' +
-      (program.source ? '' : ' in this directory')
-  );
+  // output.blankLine();
+  // output(
+  //   'Downloading YouAppz website' +
+  //     (program.source ? '' : ' in this directory')
+  // );
   output.blankLine();
 
   return (
     Promise.resolve()
       .then(() => {
-        console.log(program.name)
         if (_.isEmpty(program.name)) {
           return Promise.reject(
             Error.create('Missing --name argument.', {formatted: true})
@@ -60,12 +60,13 @@ module.exports = program => {
       .then(appManifest => {
         appManifest.id = program.name;
         return manifest.save(program, appManifest).then(() => {
+          output.blankLine();
           output(
             '    Website ' +
               chalk.underline(program.name) +
               ' downloaded.'
           );
-         
+          output.blankLine();
 
           var nextCommand;
           if (program.name) {
@@ -89,9 +90,28 @@ function createSourceDirectory(program) {
   return Promise.resolve()
     .then(() => {
       program.cwd = path.join(program.cwd, program.name);      
-      const sourceUrl = program.sourceUrl;
-      output('    ' + chalk.dim('Downloading source archive ' + sourceUrl));      
+      const sourceUrl = program.sourceUrl; 
+      // const spinner = startSpinner(program, 'Downloading archive from YouAppz');
 
-      return download(sourceUrl, program.cwd);
+      return Promise.resolve()
+      .then(() => {
+        return download(sourceUrl, program.cwd)
+      }).then((result) => {
+        // spinner.succeed();
+        return result
+      })
+      
     });
+}
+
+
+function startSpinner(program, message) {
+  // Assume if there is an YOUAPPZ_API_KEY this is running in a CI build.
+  // Don't show spinners, it just messes up the CI log output.
+  if (program.unitTest || process.env.CI) {
+    log.info(message);
+    return {isSpinning: false, succeed: () => {}, fail: () => {}};
+  }
+
+  return ora({text: message, color: 'white'}).start();
 }

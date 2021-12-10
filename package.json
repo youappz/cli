@@ -1,6 +1,6 @@
 {
   "name": "@youappz/cli",
-  "version": "1.0.3",
+  "version": "1.0.12",
   "description": "Command line interface for Youappz static hosting platform",
   "main": "bin/appz",
   "bin": {
@@ -29,6 +29,7 @@
     "js-yaml": "^3.12.0",
     "lodash": "^4.17.11",
     "minimatch": "^3.0.4",
+    "node-fetch": "^2.6.2",
     "ora": "^3.0.0",
     "osenv": "^0.1.5",
     "promise-until": "^1.0.0",
@@ -71,5 +72,9 @@
   },
   "author": "",
   "license": "ISC",
-  "homepage": "https://www.youappz.com"
+  "homepage": "https://www.youappz.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/youappz/cli.git"
+  }
 }

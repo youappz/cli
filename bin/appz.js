@@ -136,12 +136,12 @@ program.command('signup').action(
   })
 );
 
-program.command('validate').action(
-  commandAction(require('../commands/validate'), {
-    loadManifest: true,
-    requireAuth: false
-  })
-);
+// program.command('validate').action(
+//   commandAction(require('../commands/validate'), {
+//     loadManifest: true,
+//     requireAuth: false
+//   })
+// );
 
 program.command('help').action(
   commandAction(require('../commands/help'), {
@@ -161,6 +161,13 @@ program.command('download').action(
     loadWebsite: false
   })
 );
+
+// Deploy app version
+program.command('dev').action(
+  commandAction(require('../commands/dev'), {   
+  })
+);
+
 
 program.parse(process.argv);
 

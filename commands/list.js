@@ -44,7 +44,11 @@ function displayAppz(program) {
       if (app.domain && Object.keys(app.domain).length > 0) {
         const domain = app.domain.subDomain + '.' + app.domain.name
         process.stdout.write(
-          _.padEnd(chalk.yellow.underline(domain.replace('@.','')), 10,' ')
+          _.padEnd(chalk.yellow.underline('https://' + domain.replace('@.','')), 10,' ')
+        );
+      } else {
+        process.stdout.write(
+          _.padEnd(chalk.yellow.underline(`https://${app.id}.sitez.live`), 10,' ')
         );
       }
       process.stdout.write('\n');

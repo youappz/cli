@@ -105,23 +105,14 @@ login:
   summary: Login to your YouAppz account
   details: You'll be prompted to enter your email and password. If your credentials are correct, a file is written at ~/.appzrc.yml with an auth token that is passed in subsequent commands. The token is valid for 24 hours after which you'll be prompted to login again.
 
-rename:
-  summary: Rename the website
-  options:
-    - name: name
-      short: n
-      summary: The new name of the website
-  details: If on the free plan this changes the URL. I.e. https://SITENAME.youappzapp.com.
-  examples:
-    - appz rename -n "new-website-name"
 
-validate:
-  summary: Validate the youappz.yml file
-  details: |
-    Checks that there are no errors in the youappz.yml file that will prevent you from deploying.
+# validate:
+#   summary: Validate the youappz.yml file
+#   details: |
+#     Checks that there are no errors in the youappz.yml file that will prevent you from deploying.
 
-  examples:
-    - appz validate
+#   examples:
+#     - appz validate
 
 versions:
   summary: Manage website versions
